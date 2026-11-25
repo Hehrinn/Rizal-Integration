@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIZAL UNFILTERED: Beyond the Monument</title>
-
-    <!-- Google Fonts: Playfair Display (Editorial Serif), Plus Jakarta Sans (Body), JetBrains Mono (Citations/Metadata) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,20 +18,18 @@
                         ink: '#141414',
                         crimson: '#B91C1C',
                         brass: '#B48327',
-                        muted: '#5C564E',
+                        muted: '#5C564E'
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'Georgia', 'serif'],
                         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
+                        mono: ['"JetBrains Mono"', 'monospace']
                     }
                 }
             }
-        }
+        };
     </script>
-
     <style>
-        /* Base Archival Zine Canvas with Subtle Dot/Newsprint Grain */
         body {
             background-color: #F4EFE6;
             background-image: radial-gradient(rgba(20, 20, 20, 0.065) 1px, transparent 0);
@@ -44,29 +38,23 @@
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             overflow-x: hidden;
         }
-
-        /* Crisp Editorial Zine Borders & Offset Hard Shadows */
         .zine-card {
             border: 2px solid #141414;
             box-shadow: 4px 4px 0 #141414;
         }
-
         .zine-btn {
             border: 2px solid #141414;
             box-shadow: 4px 4px 0 #141414;
             transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease, color 0.14s ease;
         }
-
         .zine-btn:hover {
             transform: translate(-1px, -1px);
             box-shadow: 5px 5px 0 #141414;
         }
-
         .zine-btn:active {
             transform: translate(3px, 3px);
             box-shadow: 1px 1px 0 #141414;
         }
-
         .zine-btn:focus-visible,
         .flip-card:focus-visible,
         .tab-btn:focus-visible,
@@ -74,8 +62,6 @@
             outline: 2px solid #B91C1C;
             outline-offset: 3px;
         }
-
-        /* 3D Flip Card System (Grid-Stacked Faces Prevent Content Clipping on Mobile & Desktop) */
         .flip-card {
             perspective: 1200px;
             cursor: pointer;
@@ -84,7 +70,6 @@
             width: 100%;
             display: block;
         }
-
         .flip-card-inner {
             display: grid;
             grid-template-columns: 1fr;
@@ -93,11 +78,9 @@
             width: 100%;
             height: 100%;
         }
-
         .flip-card.is-flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
-
         .flip-card-face {
             grid-area: 1 / 1;
             backface-visibility: hidden;
@@ -110,12 +93,9 @@
             justify-content: space-between;
             min-height: 295px;
         }
-
         .flip-card-back {
             transform: rotateY(180deg);
         }
-
-        /* Smooth Panel Reveal Animation */
         @keyframes zineFadeIn {
             from {
                 opacity: 0;
@@ -126,12 +106,9 @@
                 transform: translateY(0);
             }
         }
-
         .fade-panel {
             animation: zineFadeIn 0.25s ease-out forwards;
         }
-
-        /* Hide Scrollbar on Mobile Tab Strip While Retaining Scrollability */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -142,44 +119,30 @@
     </style>
 </head>
 <body class="bg-cream text-ink antialiased selection:bg-brass/30 selection:text-ink">
-
-    <!-- =========================================================
-         READING PROGRESS BAR (FIXED AT TOP OF VIEWPORT)
-         ========================================================= -->
     <div class="fixed top-0 left-0 right-0 h-1 bg-ink/10 z-50" aria-hidden="true">
         <div id="readingProgress" class="h-full bg-crimson w-0 transition-[width] duration-75 ease-out"></div>
     </div>
 
-    <!-- =========================================================
-         STICKY MINIMAL TOP NAVIGATION BAR
-         ========================================================= -->
     <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-sm border-b-2 border-ink">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Site Wordmark -->
             <a href="#top" class="flex items-center gap-2.5 group">
                 <span class="inline-block w-2.5 h-2.5 bg-crimson border border-ink rounded-sm group-hover:bg-brass transition-colors"></span>
                 <span class="font-serif font-extrabold text-lg sm:text-xl tracking-tight text-ink">
                     RIZAL UNFILTERED
                 </span>
             </a>
-
-            <!-- Desktop Anchor Navigation -->
             <nav class="hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-wider" aria-label="Primary Navigation">
                 <a href="#myths" class="text-ink hover:text-crimson transition-colors"><span class="text-brass mr-1">01</span>Myths</a>
                 <a href="#crossroads" class="text-ink hover:text-crimson transition-colors"><span class="text-brass mr-1">02</span>Crossroads</a>
                 <a href="#today" class="text-ink hover:text-crimson transition-colors"><span class="text-brass mr-1">03</span>Today</a>
                 <a href="#sources" class="text-ink hover:text-crimson transition-colors"><span class="text-brass mr-1">04</span>Sources</a>
             </nav>
-
-            <!-- Mobile Menu Toggle -->
             <button id="mobileMenuBtn" type="button" class="md:hidden p-2 border-2 border-ink rounded-md bg-paper text-ink hover:bg-ink hover:text-cream transition-colors" aria-label="Toggle navigation menu" aria-expanded="false">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
                 </svg>
             </button>
         </div>
-
-        <!-- Mobile Dropdown Navigation -->
         <div id="mobileMenu" class="hidden md:hidden bg-paper border-t-2 border-ink px-5 py-4 space-y-3 font-mono text-xs uppercase tracking-wider">
             <a href="#myths" class="mobile-nav-link block py-1.5 text-ink hover:text-crimson"><span class="text-brass mr-2">01</span>Myths</a>
             <a href="#crossroads" class="mobile-nav-link block py-1.5 text-ink hover:text-crimson"><span class="text-brass mr-2">02</span>Crossroads</a>
@@ -189,29 +152,18 @@
     </header>
 
     <main id="top">
-
-        <!-- =========================================================
-             HERO SECTION — EDITORIAL COVER
-             ========================================================= -->
         <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-20 sm:pb-24 border-b-2 border-ink">
             <div class="max-w-4xl">
-                <!-- Eyebrow Tag -->
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 bg-paper border-2 border-ink rounded-md font-mono text-[11px] sm:text-xs font-medium tracking-wider uppercase text-ink">
                     <span class="w-2 h-2 rounded-full bg-crimson"></span>
-                    RIZAL COURSE INTEGRATION PROJECT &middot; ARCHIVAL ZINE
+                    RIZAL COURSE FINAL PROJECT &middot; ARCHIVAL ZINE
                 </div>
-
-                <!-- Main Display Headline -->
                 <h1 class="font-serif font-extrabold text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.08] tracking-tight text-ink mb-6">
-                    They put him on a one-peso coin so you wouldn’t read what he <span class="italic text-crimson underline decoration-brass decoration-4 underline-offset-4">actually</span> wrote.
+                    Beyond the Monument: Reading Rizal as a <span class="italic text-crimson underline decoration-brass decoration-4 underline-offset-4">Strategist</span>, Not a Statue.
                 </h1>
-
-                <!-- Concise Thesis Subheadline -->
                 <p class="text-base sm:text-lg lg:text-[1.15rem] leading-relaxed text-muted max-w-3xl mb-9">
                     School textbooks freeze José Rizal into a safe, polite, marble genius—easy to memorize for an exam, easy to ignore after graduation. That version erases the broke writer shivering through a Berlin winter, the evicted tenant’s son who watched his family lose their home in Calamba, the political strategist who fought bitterly with his own peers in Madrid, and the sharp critic whose diagnosis of Philippine power structures still stings today.
                 </p>
-
-                <!-- Anchor CTA Buttons -->
                 <div class="flex flex-wrap items-center gap-4 mb-12">
                     <a href="#myths" class="zine-btn inline-flex items-center justify-center px-6 py-3.5 rounded-md bg-ink text-cream font-mono text-xs sm:text-sm font-medium uppercase tracking-wider hover:bg-crimson">
                         Deconstruct the Myths &darr;
@@ -221,26 +173,21 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Compact Editorial Metadata Strip -->
             <div class="pt-6 border-t-2 border-ink/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-muted">
                 <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span class="font-semibold text-ink uppercase">Primary Texts Referenced:</span>
+                    <span class="font-semibold text-ink uppercase">Primary Texts:</span>
                     <span><em>Noli Me Tangere</em> 1887</span>
                     <span class="text-brass">&middot;</span>
                     <span><em>El Filibusterismo</em> 1891</span>
                     <span class="text-brass">&middot;</span>
-                    <span><em>Sobre la Indolencia</em> 1890</span>
+                    <span><em>Epistolario Rizalino</em></span>
                     <span class="text-brass">&middot;</span>
-                    <span><em>Filipinas Dentro de Cien Años</em> 1889</span>
+                    <span><em>La Solidaridad</em></span>
                 </div>
                 <span class="shrink-0 text-ink font-medium">1861–1896 ARCHIVE</span>
             </div>
         </section>
 
-        <!-- =========================================================
-             SECTION 01 — MYTH VS. REALITY (4 INTERACTIVE 3D FLIP CARDS)
-             ========================================================= -->
         <section id="myths" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b-2 border-ink">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 sm:mb-12">
                 <div class="max-w-2xl">
@@ -255,16 +202,9 @@
                     Four flattened textbook versions of Rizal—and what his own letters, novels, and historical record actually show. Select any card to flip it.
                 </p>
             </div>
-
-            <!-- 2x2 Responsive Grid of 3D Flip Cards -->
-            <div id="mythsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7">
-                <!-- Rendered via JS -->
-            </div>
+            <div id="mythsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-7"></div>
         </section>
 
-        <!-- =========================================================
-             SECTION 02 — AT THE CROSSROADS (3-ROUND DILEMMA SIMULATOR)
-             ========================================================= -->
         <section id="crossroads" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b-2 border-ink">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
                 <div class="max-w-2xl">
@@ -279,21 +219,14 @@
                     History feels inevitable only after it happens. Step into three real turning points where Rizal had no clean way out, and see how your calls stack up against his.
                 </p>
             </div>
-
-            <!-- Simulator Card Container -->
-            <div id="simulatorContainer" class="zine-card rounded-lg bg-paper overflow-hidden">
-                <!-- Rendered dynamically by JS -->
-            </div>
+            <div id="simulatorContainer" class="zine-card rounded-lg bg-paper overflow-hidden"></div>
         </section>
 
-        <!-- =========================================================
-             SECTION 03 — SAME SCRIPT, DIFFERENT CENTURY (4-TAB DEEP DIVES)
-             ========================================================= -->
         <section id="today" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-b-2 border-ink">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
                 <div class="max-w-2xl">
                     <p class="font-mono text-xs font-semibold uppercase tracking-widest text-crimson mb-2">
-                        Section 03 &middot; Structural Parallels
+                        Section 03 &middot; Contemporary Parallels
                     </p>
                     <h2 class="font-serif font-bold text-3xl sm:text-4xl tracking-tight text-ink">
                         Same Script, Different Century
@@ -303,42 +236,27 @@
                     Rizal remains sharp reading for Filipino college students not out of nostalgia, but because the power dynamics he wrote about never really left.
                 </p>
             </div>
-
-            <!-- Horizontal Scrollable Tab Bar -->
-            <div id="todayTabs" class="flex gap-2.5 overflow-x-auto no-scrollbar pb-3 mb-5" role="tablist" aria-label="Contemporary Parallels">
-                <!-- Rendered by JS -->
-            </div>
-
-            <!-- Split-Panel View: Left 19th-Century Receipt | Right 2026 Reality -->
-            <div id="todayPanel" class="zine-card rounded-lg bg-paper overflow-hidden" role="tabpanel">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="todayTabs" class="flex gap-2.5 overflow-x-auto no-scrollbar pb-3 mb-5" role="tablist" aria-label="Contemporary Parallels"></div>
+            <div id="todayPanel" class="zine-card rounded-lg bg-paper overflow-hidden" role="tabpanel"></div>
         </section>
 
-        <!-- =========================================================
-             SECTION 04 — PRIMARY SOURCES & GROUP CREDITS
-             ========================================================= -->
         <footer id="sources" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b-2 border-ink">
-
-                <!-- Left Column: Closing Takeaway -->
                 <div class="lg:col-span-5 space-y-4">
                     <p class="font-mono text-xs font-semibold uppercase tracking-widest text-crimson">
-                        Section 04 &middot; Closing Note
+                        Section 04 &middot; Closing Takeaway
                     </p>
                     <h2 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-snug">
-                        Read the arguments, not just the trivia.
+                        A mirror, not a monument.
                     </h2>
                     <p class="text-sm sm:text-[15px] leading-relaxed text-muted">
-                        Reading Rizal today isn’t about memorizing his girlfriends, his height, or which European city he visited in 1888. It’s about recognizing how power still operates—how institutions protect themselves, how ordinary people get blamed for systemic failures, and what it costs to refuse being a passive passenger on the <em>Bapor Tabo</em>.
+                        Reading Rizal today isn’t about memorizing trivia or worshipping a marble statue. It is about using his sharpest arguments as a mirror—recognizing how institutions protect themselves, how ordinary people get blamed for systemic failures, and what it costs to refuse being a passive passenger on the <em>Bapor Tabo</em>.
                     </p>
                 </div>
-
-                <!-- Right Column: Primary Sources & References -->
                 <div class="lg:col-span-7">
                     <div class="bg-paper border-2 border-ink rounded-lg p-6 sm:p-7 shadow-[4px_4px_0_#141414]">
                         <h3 class="font-mono text-xs font-semibold uppercase tracking-widest text-brass mb-4">
-                            Primary Sources &amp; Key References
+                            Primary &amp; Secondary References
                         </h3>
                         <ul class="space-y-3 text-sm text-ink">
                             <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
@@ -346,16 +264,12 @@
                                 <span>Rizal, José. <em>Noli Me Tangere</em>. Berlin: Berliner Buchdruckerei-Aktiengesellschaft.</span>
                             </li>
                             <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                                <span class="font-mono text-xs text-crimson font-semibold shrink-0">1889</span>
-                                <span>Rizal, José. <em>Filipinas Dentro de Cien Años</em> (<em>The Philippines a Century Hence</em>). Serialized in <em>La Solidaridad</em>.</span>
-                            </li>
-                            <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                                <span class="font-mono text-xs text-crimson font-semibold shrink-0">1890</span>
-                                <span>Rizal, José. <em>Sobre la Indolencia de los Filipinos</em> (<em>The Indolence of the Filipinos</em>). Serialized in <em>La Solidaridad</em>.</span>
-                            </li>
-                            <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
                                 <span class="font-mono text-xs text-crimson font-semibold shrink-0">1891</span>
                                 <span>Rizal, José. <em>El Filibusterismo</em>. Ghent: F. Meyer-Van Loo Press.</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                                <span class="font-mono text-xs text-crimson font-semibold shrink-0">1930</span>
+                                <span>Kalaw, Teodoro M., ed. <em>Epistolario Rizalino</em> (Letters of José Rizal). Manila: Bureau of Printing.</span>
                             </li>
                             <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
                                 <span class="font-mono text-xs text-brass font-semibold shrink-0">1970</span>
@@ -369,30 +283,21 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Bottom Editable Group Credits Bar -->
             <div class="pt-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs text-muted">
-                <p>
-                    <strong class="text-ink">Group Project &middot; Life and Works of Rizal</strong> &middot; Replace with Group Members’ Names in <code class="px-1.5 py-0.5 bg-paper border border-ink/30 rounded text-ink">index.html</code>
+                <p class="text-ink font-medium">
+                    Created by Napoleon Cortez III &middot; Rizal Course Final Project
                 </p>
                 <a href="#top" class="text-ink hover:text-crimson font-medium transition-colors shrink-0">
                     Back to Top &uarr;
                 </a>
             </div>
         </footer>
-
     </main>
 
-    <!-- =========================================================
-         VANILLA JAVASCRIPT — INTERACTIVE ZINE MODULES
-         ========================================================= -->
     <script>
         (function () {
             'use strict';
 
-            /* ---------------------------------------------------------
-               1. READING PROGRESS BAR & MOBILE NAV
-               --------------------------------------------------------- */
             const progressBar = document.getElementById('readingProgress');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -419,33 +324,34 @@
                 });
             });
 
-            /* ---------------------------------------------------------
-               2. SECTION 01 — MYTH VS. REALITY (3D FLIP CARDS)
-               --------------------------------------------------------- */
             const mythsData = [
                 {
                     num: '01',
-                    myth: 'He was a pure pacifist who hated revolution.',
-                    reality: 'Rizal’s objection in 1896 wasn’t moral squeamishness—it was tactical and structural. In El Filibusterismo (Simoun vs. Padre Florentino) and his Dapitan meeting with Pio Valenzuela, he warned that an under-armed, fragmented uprising would only produce mass slaughter and swap Spanish rulers for local tyrants. He didn’t reject liberation; he rejected suicide disguised as heroism.',
-                    citation: 'El Filibusterismo (1891) · Dapitan Testimony (1896)'
+                    myth: 'Pure Pacifist',
+                    submyth: 'He rejected revolution out of absolute moral pacifism.',
+                    reality: 'He was a strategic pragmatist who questioned the timing and preparedness of the 1896 revolt, not the moral right to resist tyranny. Both his December 1896 manifesto and the debate between Simoun and Padre Florentino in El Filibusterismo show he feared an under-armed uprising would only bring mass slaughter and replace Spanish rulers with local tyrants.',
+                    citation: 'El Filibusterismo (1891) · Dec. 1896 Manifesto'
                 },
                 {
                     num: '02',
-                    myth: 'He was a rich, untouchable ilustrado.',
-                    reality: 'The Mercados were inquilinos (leaseholders), not titled hacienda owners—they rented land from the Dominican friars in Calamba. When Rizal helped document arbitrary rent hikes in the 1888 Calamba agrarian dispute, the state evicted his family, burned tenants’ homes, exiled his relatives, and forced his 64-year-old mother to march 50 km to Santa Cruz. His privilege was conditional, and speaking up burned it to the ground.',
-                    citation: 'Calamba Agrarian Dispute (1887–1891)'
+                    myth: 'Untouchable Ilustrado',
+                    submyth: 'His family’s wealth shielded him from colonial hardship.',
+                    reality: 'His family faced severe agrarian dispossession in the 1891 Calamba Hacienda eviction—losing their leased lands, watching tenants’ homes burned, and enduring exile and financial ruin. Earlier, he literally starved in Berlin, skipping meals to afford the printing of Noli Me Tangere.',
+                    citation: 'Calamba Eviction (1891) · Epistolario Rizalino'
                 },
                 {
                     num: '03',
-                    myth: 'He wanted Philippine independence from day one.',
-                    reality: 'Rizal’s politics evolved through disillusionment. Early in Europe, he lobbied through La Solidaridad for assimilation—making the Philippines a Spanish province with Cortes representation. Only after Spain ignored reforms and crushed Calamba did he abandon Madrid, shift toward grassroots civic organizing with La Liga Filipina (1892), and predict eventual separation in The Philippines a Century Hence.',
+                    myth: 'Independence from Day One',
+                    submyth: 'He always demanded total separation from Spain.',
+                    reality: 'He originally pushed for assimilation—making the Philippines a Spanish province with representation in the Spanish Cortes and equal legal rights. Only after Spain ignored peaceful reforms and crushed Calamba did he radicalize toward grassroots civic organizing and eventual separation.',
                     citation: 'La Solidaridad · Filipinas Dentro de Cien Años (1889)'
                 },
                 {
                     num: '04',
-                    myth: 'He was a flawless, saint-like marble hero.',
-                    reality: 'He was stubborn, fiercely competitive, and human. He had a bitter 1891 falling-out with Marcelo H. del Pilar over the Responsable leadership in Madrid, occasionally showed ilustrado impatience toward the masses before his Dapitan exile grounded him, and lived so broke in Berlin that he skipped meals and survived on biscuits to print Noli Me Tangere. Remembering his flaws makes his courage real instead of mythic.',
-                    citation: 'Madrid Leadership Crisis (1891) · Letters to Blumentritt'
+                    myth: 'Marble Hero',
+                    submyth: 'He was a flawless, saint-like figure above petty conflict.',
+                    reality: 'He was deeply human—stubborn, insecure, financially stressed, and engaged in bitter ideological and leadership rifts with Marcelo H. del Pilar over the direction of La Solidaridad in Madrid. Seeing his flaws makes his courage real instead of mythic.',
+                    citation: 'Madrid Leadership Split (1891) · Ocampo (1990)'
                 }
             ];
 
@@ -461,7 +367,6 @@
 
                 card.innerHTML = `
                     <div class="flip-card-inner">
-                        <!-- FRONT FACE: MYTH -->
                         <div class="flip-card-face flip-card-front bg-paper p-6 sm:p-7">
                             <div class="flex items-center justify-between gap-2 pb-4 border-b border-ink/15">
                                 <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-crimson text-cream border border-ink">
@@ -469,20 +374,19 @@
                                 </span>
                                 <span class="font-mono text-[11px] text-muted">Textbook Version</span>
                             </div>
-
-                            <div class="my-6">
-                                <h3 class="font-serif font-bold text-2xl sm:text-[1.65rem] leading-snug text-ink">
+                            <div class="my-6 space-y-2">
+                                <h3 class="font-serif font-bold text-2xl sm:text-[1.7rem] leading-snug text-ink">
                                     “${item.myth}”
                                 </h3>
+                                <p class="text-sm text-muted leading-relaxed">
+                                    ${item.submyth}
+                                </p>
                             </div>
-
                             <div class="pt-4 border-t border-ink/15 flex items-center justify-between font-mono text-xs font-medium text-crimson">
                                 <span>Click to flip &#8635;</span>
                                 <span class="text-muted text-[11px]">Reality on reverse</span>
                             </div>
                         </div>
-
-                        <!-- BACK FACE: REALITY -->
                         <div class="flip-card-face flip-card-back bg-ink text-cream p-6 sm:p-7">
                             <div class="flex items-center justify-between gap-2 pb-3.5 border-b border-cream/20">
                                 <span class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-brass text-ink">
@@ -490,11 +394,9 @@
                                 </span>
                                 <span class="font-mono text-[11px] text-cream/70">Card ${item.num}</span>
                             </div>
-
                             <p class="text-sm sm:text-[15px] leading-relaxed text-cream/90 my-5">
                                 ${item.reality}
                             </p>
-
                             <div class="pt-3.5 border-t border-cream/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[11px]">
                                 <span class="text-brass">${item.citation}</span>
                                 <span class="text-cream/80 shrink-0">&larr; Back to myth</span>
@@ -519,20 +421,17 @@
                 mythsGrid.appendChild(card);
             });
 
-            /* ---------------------------------------------------------
-               3. SECTION 02 — AT THE CROSSROADS (3-ROUND SIMULATOR)
-               --------------------------------------------------------- */
             const roundsData = [
                 {
                     roundNum: 1,
-                    locationDate: 'Berlin, Winter 1886–1887',
-                    title: 'The Broke Manuscript',
-                    setup: 'You’re 25, shivering through a German winter, out of allowance from your brother Paciano, and coughing up blood from exhaustion. Your manuscript, Noli Me Tangere, attacks the friars directly—publishing it will put your entire family in Calamba in danger.',
+                    locationDate: 'Berlin, 1886–1887',
+                    title: 'Broke and Freezing with Noli Me Tangere',
+                    setup: 'You are 25, freezing through a German winter, out of money from home, and coughing from exhaustion. Your manuscript, Noli Me Tangere, attacks the friars directly—publishing it will put your entire family in Calamba in immediate danger.',
                     options: [
                         {
                             letter: 'A',
                             text: 'Burn the manuscript and return home quietly as an eye surgeon.',
-                            fallout: 'Your family avoids immediate retaliation and you build a comfortable medical practice in Laguna—but the abuses of the friars and civil guards stay hidden behind colonial censorship, and the Noli never sparks a generation.'
+                            fallout: 'Your family avoids immediate retaliation and you build a comfortable medical practice in Laguna—but colonial abuses remain hidden behind censorship, and the Noli never sparks a generation.'
                         },
                         {
                             letter: 'B',
@@ -542,42 +441,42 @@
                         {
                             letter: 'C',
                             text: 'Borrow 300 pesos from a friend and print 2,000 copies uncensored anyway.',
-                            fallout: 'You publish the book intact and smuggle copies into Manila, electrifying readers across the islands—while immediately putting a target on your back and triggering fierce retaliation against your family in Calamba.'
+                            fallout: 'You publish the book intact and smuggle copies into Manila, electrifying readers across the islands—while immediately putting a target on your back and triggering fierce retaliation against your family.'
                         }
                     ],
                     actualIndex: 2,
-                    actualReality: 'Option C. Rizal came dangerously close to burning the manuscript in despair. He did cut one chapter (“Elias and Salome”)—not to appease censors, but purely to cut printing costs. Maximo Viola loaned him 300 pesos to print 2,000 copies in Berlin.'
+                    actualReality: 'Option C. Rizal nearly burned the manuscript in despair, cutting only one chapter (“Elias and Salome”) strictly to reduce printing costs. Maximo Viola loaned him 300 pesos to print 2,000 uncensored copies in Berlin.'
                 },
                 {
                     roundNum: 2,
                     locationDate: 'Madrid & Ghent, 1890–1891',
-                    title: 'The Calamba Evictions',
-                    setup: 'Word reaches Europe that the Dominican order evicted your family from Calamba and soldiers razed tenants’ homes in retaliation for your protest. Meanwhile, Del Pilar’s faction just outvoted you in Madrid. Staying in Europe is safe; going home is walking into a trap.',
+                    title: 'The Calamba Eviction & Split with Del Pilar',
+                    setup: 'News reaches Europe that the Dominican order evicted your family from Calamba and soldiers razed tenants’ homes. At the same time, your ideological rift with Marcelo H. del Pilar over La Solidaridad leaves you alienated in Madrid. Staying in Europe is safe; going home is walking into a trap.',
                     options: [
                         {
                             letter: 'A',
                             text: 'Stay in Europe, practice medicine, and keep writing from a safe distance.',
-                            fallout: 'You stay alive and keep publishing articles in Madrid, yet your credibility among Filipinos back home fades—it is hard to ask people to risk everything when you refuse to step off European soil.'
+                            fallout: 'You stay alive and keep publishing articles in Madrid, yet your credibility among Filipinos back home fades—it is hard to ask people to risk everything when you refuse to leave Europe.'
                         },
                         {
                             letter: 'B',
                             text: 'Slip back into Laguna immediately and lead a retaliatory armed raid.',
-                            fallout: 'With no organized army, weapons, or supply lines, a localized raid in Calamba would be crushed within days by colonial troops, giving authorities an excuse for even wider massacres.'
+                            fallout: 'With no organized army, weapons, or supply lines, a localized raid in Calamba would be crushed within days by colonial troops, giving authorities an excuse for wider massacres.'
                         },
                         {
                             letter: 'C',
-                            text: 'Finish a darker, angrier sequel (El Filibusterismo) and return to Manila anyway to build a civic league.',
+                            text: 'Finish a darker sequel (El Filibusterismo), walk away from Madrid, and return to Manila to organize.',
                             fallout: 'You reject both safe exile and reckless bloodshed, choosing instead to organize Filipinos directly on home soil—even though colonial authorities are waiting at the port.'
                         }
                     ],
                     actualIndex: 2,
-                    actualReality: 'Option C. Rizal pawned his jewels in Ghent to finish El Filibusterismo (dedicated to GOMBURZA), walked away from Madrid’s infighting, and sailed back to Manila in June 1892 to found La Liga Filipina—knowing arrest was almost guaranteed. He was deported to Dapitan four days later.'
+                    actualReality: 'Option C. Rizal pawned his jewels in Ghent to finish El Filibusterismo, stepped back from Madrid’s infighting, and sailed back to Manila in June 1892 to found La Liga Filipina. He was deported to Dapitan four days later.'
                 },
                 {
                     roundNum: 3,
                     locationDate: 'Dapitan, June 1896',
-                    title: 'Valenzuela’s Secret Visit',
-                    setup: 'Four years into exile, Dr. Pio Valenzuela arrives disguised with a blind patient. He brings a message from Andrés Bonifacio: the Katipunan is ready to rise, and they want to smuggle you out to lead the revolution.',
+                    title: 'Pio Valenzuela’s Secret Visit',
+                    setup: 'Four years into exile, Dr. Pio Valenzuela arrives disguised with a blind patient. He brings a message from Andrés Bonifacio: the Katipunan is ready to rise, and they want your blessing—and to smuggle you out to lead the revolt.',
                     options: [
                         {
                             letter: 'A',
@@ -592,24 +491,23 @@
                         {
                             letter: 'C',
                             text: 'Refuse the premature revolt, warn them to secure arms and recruit Antonio Luna first, and keep their secret.',
-                            fallout: 'You stand by your tactical warning without snitching on the Katipunan—a principled middle ground that ultimately satisfies neither the impatient revolutionaries nor the Spanish military court.'
+                            fallout: 'You stand by your tactical warning without snitching on the Katipunan—a principled middle ground that ultimately satisfies neither impatient revolutionaries nor the Spanish military court.'
                         }
                     ],
                     actualIndex: 2,
-                    actualReality: 'Option C. Rizal refused to break his word of honor or endorse an unarmed revolt he believed would end in massacre—yet he never betrayed the Katipunan to Spain. Four months later, the colonial court executed him at Bagumbayan anyway as the revolution’s “living soul.”'
+                    actualReality: 'Option C. Rizal refused to endorse an under-armed revolt he believed would end in massacre, yet he never betrayed the Katipunan to Spain. Four months later, the colonial court executed him at Bagumbayan anyway.'
                 }
             ];
 
             const simulatorContainer = document.getElementById('simulatorContainer');
             let currentRoundIdx = 0;
-            let userChoices = []; // stores chosen option index per round
+            let userChoices = [];
 
             function renderSimulatorRound(roundIdx, chosenOptionIdx = null) {
                 const round = roundsData[roundIdx];
                 const isLastRound = roundIdx === roundsData.length - 1;
 
                 simulatorContainer.innerHTML = `
-                    <!-- Top Progress Header -->
                     <div class="bg-ink text-cream px-5 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-3 border-b-2 border-ink">
                         <div class="flex items-center gap-3">
                             <span class="font-mono text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-crimson text-cream">
@@ -619,8 +517,6 @@
                                 ${round.locationDate}
                             </span>
                         </div>
-
-                        <!-- Progress Dots -->
                         <div class="flex items-center gap-2" aria-label="Round progress">
                             ${roundsData.map((_, i) => `
                                 <span class="h-2.5 rounded-sm border border-cream/40 transition-all ${
@@ -629,8 +525,6 @@
                             `).join('')}
                         </div>
                     </div>
-
-                    <!-- Dilemma Body -->
                     <div class="p-6 sm:p-8 lg:p-10 fade-panel">
                         <div class="max-w-3xl mb-7">
                             <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink mb-3">
@@ -640,11 +534,7 @@
                                 ${round.setup}
                             </p>
                         </div>
-
-                        <!-- Option Cards (A, B, C) -->
                         <div id="simOptions" class="grid grid-cols-1 gap-3.5 mb-6"></div>
-
-                        <!-- Feedback Panel (Appears after choice) -->
                         <div id="simFeedback" class="${chosenOptionIdx === null ? 'hidden' : ''}"></div>
                     </div>
                 `;
@@ -706,17 +596,14 @@
                     feedbackEl.innerHTML = `
                         <div class="fade-panel mt-6 rounded-lg border-2 border-ink bg-cream p-5 sm:p-6 space-y-5">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <!-- Left: Fallout of User's Choice -->
                                 <div class="space-y-2">
                                     <span class="font-mono text-[11px] font-semibold uppercase tracking-wider ${matched ? 'text-brass' : 'text-crimson'} block">
-                                        Your Choice (${picked.letter}) &middot; Likely Historical Fallout
+                                        Your Choice (${picked.letter}) &middot; Immediate Fallout
                                     </span>
                                     <p class="text-sm leading-relaxed text-ink/90">
                                         ${picked.fallout}
                                     </p>
                                 </div>
-
-                                <!-- Right: What Rizal Actually Did -->
                                 <div class="space-y-2 md:pl-5 md:border-l-2 md:border-ink/15">
                                     <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-ink block">
                                         What Rizal Actually Did
@@ -726,7 +613,6 @@
                                     </p>
                                 </div>
                             </div>
-
                             <div class="pt-4 border-t border-ink/15 flex flex-wrap items-center justify-between gap-3">
                                 <span class="font-mono text-xs text-muted">
                                     ${matched ? 'You made the same call Rizal did.' : 'You took a different route than Rizal.'}
@@ -770,18 +656,15 @@
                             Matched Rizal: ${matchCount} / ${roundsData.length}
                         </span>
                     </div>
-
                     <div class="p-6 sm:p-8 lg:p-10 fade-panel space-y-6">
                         <div class="max-w-3xl space-y-2.5">
                             <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink">
-                                You matched Rizal’s historical path ${matchCount} out of ${roundsData.length} times.
+                                You matched Rizal’s historical decisions ${matchCount} out of ${roundsData.length} times.
                             </h3>
                             <p class="text-sm sm:text-base text-muted leading-relaxed">
                                 ${verdictText}
                             </p>
                         </div>
-
-                        <!-- Round-by-Round Comparison -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             ${roundsData.map((round, i) => {
                                 const userOpt = round.options[userChoices[i]];
@@ -805,7 +688,6 @@
                                 `;
                             }).join('')}
                         </div>
-
                         <div class="pt-2">
                             <button id="replaySimBtn" type="button" class="zine-btn px-5 py-3 rounded-md bg-ink text-cream font-mono text-xs font-medium uppercase tracking-wider hover:bg-crimson cursor-pointer">
                                 &#8634; Replay Simulator
@@ -821,45 +703,42 @@
                 });
             }
 
-            /* ---------------------------------------------------------
-               4. SECTION 03 — SAME SCRIPT, DIFFERENT CENTURY (4 TABS)
-               --------------------------------------------------------- */
             const todayData = [
                 {
                     tabLabel: '01 · Land & Economic Capture',
-                    receiptTag: 'Calamba Dispute (1888) · El Filibusterismo',
-                    receiptTitle: 'The Inquilino Trap & Cabesang Tales',
+                    receiptTag: 'Calamba Hacienda (1888–1891) · El Filibusterismo',
+                    receiptTitle: 'The Inquilino System & Cabesang Tales',
                     receiptQuote: '“He saw his father, his wife, and his eldest daughter die clearing that land—only for a corporation to claim it and hike the rent every time the harvest improved.”',
-                    receiptBody: 'In both real life (the Calamba inquilino system) and fiction (Cabesang Tales in El Filibusterismo), Filipino families cleared and worked the land for generations, only for powerful estates to arbitrarily raise rents and confiscate property with full legal backing from colonial courts.',
-                    nowTitle: 'Land conversion, endo, and rigged rules',
+                    receiptBody: 'In both real life (the Calamba Hacienda inquilino system) and fiction (Cabesang Tales in El Filibusterismo), Filipino families worked the land for generations, only for powerful estates to arbitrarily raise rents and confiscate property with full legal backing from colonial courts.',
+                    nowTitle: 'Modern agrarian & economic inequality',
                     nowBody: 'Today, agricultural workers are squeezed by middlemen, import-heavy policies, and aggressive land conversion, while urban workers cycle through precarious contractual labor. Rizal’s point still lands hard: when powerful institutions write the rules for themselves, hard work alone never guarantees security.'
                 },
                 {
                     tabLabel: '02 · Manufactured Apathy & Spin',
-                    receiptTag: 'Sobre la Indolencia (1890) · Ben Zayb',
-                    receiptTitle: 'Calling Exhausted Workers “Lazy”',
+                    receiptTag: 'Friar Censorship · Ben Zayb (1891)',
+                    receiptTitle: 'Colonial Propaganda & Controlled Narratives',
                     receiptQuote: '“Indolence in the Philippines is a chronic malady, not a hereditary one.”',
-                    receiptBody: 'In Sobre la Indolencia de los Filipinos (1890), Rizal dismantled the colonial slur that Filipinos were naturally “lazy,” proving that forced labor (polo y servicio), pirate raids, and confiscatory taxes killed any incentive to produce. Meanwhile, in El Filibusterismo, journalist Ben Zayb twists every story to flatter colonial officials and bury inconvenient facts.',
-                    nowTitle: '“Diskarte” shaming & disinformation feeds',
-                    nowBody: 'Today, “diskarte” culture is weaponized to blame ordinary citizens for stagnant wages, three-hour commutes, and broken public services—while coordinated disinformation networks, historical revisionism, and outrage-driven feeds distract the public from holding officials accountable.'
+                    receiptBody: 'Colonial authorities banned Noli Me Tangere, smeared critics as heretics, and blamed Filipinos’ exhaustion on “natural laziness.” In El Filibusterismo, journalist Ben Zayb twists every event to flatter officials and bury inconvenient facts.',
+                    nowTitle: 'Disinformation & social media echo chambers',
+                    nowBody: 'In 2026, censorship rarely needs a friar’s stamp—it runs on coordinated disinformation networks, historical revisionism, and algorithmic echo chambers that flood feeds with outrage and distract the public from holding officials accountable.'
                 },
                 {
                     tabLabel: '03 · Brain Drain & Exhaustion',
-                    receiptTag: 'Propaganda Movement · Letters (1882–1892)',
+                    receiptTag: 'Ilustrado Diaspora · Epistolario Rizalino',
                     receiptTitle: 'Leaving to Breathe, Returning to Fight',
                     receiptQuote: '“The battlefield is in the Philippines; there is where we should meet.”',
-                    receiptBody: 'Rizal and the Propaganda Movement left for Europe because colonial censorship and friar-run universities choked local education and opportunity. Yet Rizal grew increasingly uneasy with permanent exile in Madrid, arguing that staying abroad forever turns educated Filipinos into detached spectators writing essays for an audience that isn’t listening.',
-                    nowTitle: 'The college-grad exit pipeline',
-                    nowBody: 'Thousands of nurses, engineers, teachers, and fresh college graduates leave the Philippines every year—not because they hate home, but because the system makes staying financially punishing. Young Filipinos today live inside the exact same tension Rizal knew: building a livable future abroad versus trying to fix a stubborn system at home.'
+                    receiptBody: 'Rizal and the Propaganda Movement left for Europe because colonial censorship and friar-run universities choked local opportunity. Yet Rizal grew uneasy with permanent exile in Madrid, arguing that staying abroad forever turns educated Filipinos into detached spectators.',
+                    nowTitle: 'Modern OFW & skilled migration',
+                    nowBody: 'Thousands of nurses, engineers, teachers, and fresh college graduates leave the Philippines every year—not because they hate home, but because the system makes staying financially punishing. Young Filipinos today live inside the exact same tension Rizal knew.'
                 },
                 {
                     tabLabel: '04 · The Bapor Tabo & Public Funds',
                     receiptTag: 'El Filibusterismo, Chapter 1 (1891)',
                     receiptTitle: 'Upper Deck Comfort, Lower Deck Suffocation',
                     receiptQuote: '“Heavy, round, whitewashed to hide its rust—moving forward slowly while pretending to be a ship of state.”',
-                    receiptBody: 'Chapter 1 of El Filibusterismo opens on the Bapor Tabo—a slow, heavy, whitewashed steamship where friars and elites argue over grand theories on the breezy upper deck while ordinary passengers suffocate beside the engines below. Officials like Don Custodio endlessly form committees and draft proposals that fix nothing.',
-                    nowTitle: 'Performative hearings & flood-control budgets',
-                    nowBody: 'In 2026, the Bapor Tabo looks a lot like televised legislative hearings that produce viral soundbites instead of convictions, bloated infrastructure and flood-control budgets that collapse the moment a typhoon hits, and elite impunity—where the people on the upper deck stay dry while everyone below absorbs the cost.'
+                    receiptBody: 'Chapter 1 of El Filibusterismo opens on the Bapor Tabo—a slow, whitewashed steamship where friars and elites debate grand theories on the breezy upper deck while ordinary passengers suffocate beside the engines below, and officials draft proposals that fix nothing.',
+                    nowTitle: 'Infrastructure & public fund accountability',
+                    nowBody: 'In 2026, the Bapor Tabo looks a lot like bloated infrastructure and flood-control budgets that collapse the moment a typhoon hits, performative hearings that end without convictions, and elite impunity—where the upper deck stays dry while everyone below absorbs the cost.'
                 }
             ];
 
@@ -886,7 +765,6 @@
                 const current = todayData[activeIdx];
                 todayPanelEl.innerHTML = `
                     <div class="fade-panel grid grid-cols-1 md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-ink">
-                        <!-- LEFT: 19th-Century Receipt -->
                         <div class="p-6 sm:p-8 lg:p-9 bg-paper space-y-4">
                             <div class="flex flex-wrap items-center justify-between gap-2">
                                 <span class="font-mono text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-crimson text-cream border border-ink">
@@ -894,21 +772,16 @@
                                 </span>
                                 <span class="font-mono text-[11px] text-muted">${current.receiptTag}</span>
                             </div>
-
                             <h3 class="font-serif font-bold text-2xl text-ink leading-snug">
                                 ${current.receiptTitle}
                             </h3>
-
                             <blockquote class="pl-4 border-l-4 border-brass font-serif italic text-ink/90 text-[15px] sm:text-base leading-relaxed">
                                 ${current.receiptQuote}
                             </blockquote>
-
                             <p class="text-sm sm:text-[15px] leading-relaxed text-muted">
                                 ${current.receiptBody}
                             </p>
                         </div>
-
-                        <!-- RIGHT: 2026 Reality -->
                         <div class="p-6 sm:p-8 lg:p-9 bg-cream space-y-4">
                             <div class="flex flex-wrap items-center justify-between gap-2">
                                 <span class="font-mono text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-ink text-brass border border-ink">
@@ -916,11 +789,9 @@
                                 </span>
                                 <span class="font-mono text-[11px] text-muted">Contemporary Philippines</span>
                             </div>
-
                             <h3 class="font-serif font-bold text-2xl text-ink leading-snug">
                                 ${current.nowTitle}
                             </h3>
-
                             <p class="text-sm sm:text-[15px] leading-relaxed text-ink/90">
                                 ${current.nowBody}
                             </p>
@@ -929,9 +800,6 @@
                 `;
             }
 
-            /* ---------------------------------------------------------
-               INITIALIZE INTERACTIVE MODULES
-               --------------------------------------------------------- */
             renderSimulatorRound(0, null);
             renderTodayTabs(0);
         })();
